@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewContainerRef  } from '@angular/core';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-login-form',
@@ -8,14 +9,27 @@ import { Component, OnInit } from '@angular/core';
 export class LoginFormComponent implements OnInit {
   email;
   password;
-  
-  constructor() { }
+  constructor(public toastr: ToastsManager,vcr : ViewContainerRef) { 
+    this.toastr.setRootViewContainerRef(vcr);
+  }
 
   ngOnInit() {
   }
 
-  logIn(){
-
+  allInputValied(): boolean{
+    return false;
   }
+
+  logIn(){
+    
+    if(this.allInputValied()){
+      this.toastr.success('You are awesome!', 'Success!');
+    }
+    else
+    {
+      this.toastr.error('This is not good!', 'Oops!');
+    }
+  }
+
 
 }
