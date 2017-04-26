@@ -3,21 +3,24 @@
     <fieldset>
       <legend>User Info</legend>
       <div class="form-group">
-        <label for="email" class="col-md-2 control-label">Email</label>
-        <div class="col-md-10">
-          <input class="form-control" type="text" name="email" placeholder="example@gmail.com" [(ngModel)]="email" required/>
-        </div>
+        <img src="src/img/nobody_m.original.jpg" width="200px"/>
       </div>
       <div class="form-group">
-        <label for="password" class="col-md-2 control-label">Password</label>
-        <div class="col-md-10">
-          <input class="form-control" type="password" name="password" placeholder="********" [(ngModel)]="password" required/>
-        </div>
+          <input class="form-control" type="text" name="email" placeholder="example@gmail.com"  />
       </div>
       <div class="form-group">
-        <div class="col-lg-10 col-lg-offset-2">
+          <input class="form-control" type="password" name="password" placeholder="********" onkeydown="CheckEmail()" />
+      </div>
+      <div class="form-group">
+        <div class="">
           <button type="reset" class="btn btn-default"> Reset </button>
-          <button class="btn btn-primary" type="submit"> Log in </button>
+          <button class="btn btn-primary" type="submit" name="loginButton" id="loginButton" disabled="true"> Log in </button>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="">
+          <a href="#">Forget Password ?</a>
+          <a href="#">Create Account</a>
         </div>
       </div>
     </fieldset>

@@ -9,6 +9,8 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 export class LoginFormComponent implements OnInit {
   email;
   password;
+  loginButton;
+  isValidEmail;
   constructor(public toastr: ToastsManager,vcr : ViewContainerRef) { 
     this.toastr.setRootViewContainerRef(vcr);
   }
@@ -31,5 +33,7 @@ export class LoginFormComponent implements OnInit {
     }
   }
 
-
+  CheckEmail(){
+    
+  }
 }
