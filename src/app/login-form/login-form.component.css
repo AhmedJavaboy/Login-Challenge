@@ -4,3 +4,14 @@
     border: 2px solid #73AD21;*/
     text-align: center;
 }
+#loginButton{
+    padding: 12px 40px;
+    float: right;
+    font-weight: 400;
+    display: block;
+    width: 100%;
+}
+#forget-password{
+    color:#555;
+    
+}

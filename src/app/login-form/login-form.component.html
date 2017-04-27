@@ -3,23 +3,38 @@
     <fieldset>
       <legend>User Info</legend>
       <div class="form-group">
-        <img src="src/img/nobody_m.original.jpg" width="200px"/>
+        <img src="src/img/nobody_m.original.jpg" width="200px" />
+      </div>
+      <div class="form-group {{css_class}}">
+        <input class="form-control" type="text" name="email" placeholder="example@gmail.com" [(ngModel)]="email" (ngModelChange)="checkEmailFormat($event)"
+          required>
+      </div>
+      <div class="form-group" *ngIf="emailMessage.length>0">
+        <label class="{{text_color}}">{{emailMessage}}</label>
       </div>
       <div class="form-group">
-          <input class="form-control" type="text" name="email" placeholder="example@gmail.com"  />
+        <input class="form-control" type="password" name="password" placeholder="********" [(ngModel)]="password" (ngModelChange)="CheckFields($event)"
+          required>
+          <a href="#" class="pull-right" id="forget-password">Forget Password ?</a>
+        
+      </div>
+      <div class="form-group" *ngIf="passwordMessage.length>0">
+        <label class="text-danger">{{passwordMessage}}</label>
       </div>
       <div class="form-group">
-          <input class="form-control" type="password" name="password" placeholder="********" onkeydown="CheckEmail()" />
+        <!--<button type="reset" class="btn btn-default"> Reset </button>-->
+        <button class="btn btn-primary" type="submit" name="loginButton" id="loginButton" [(disabled)]="!isValid"> Log in </button>
+
       </div>
+    </fieldset>
+  </form>
+  <form id="web-form" class="form-horizontal" (submit)="logIn()">
+
+    <fieldset>
+      <legend></legend>
       <div class="form-group">
         <div class="">
-          <button type="reset" class="btn btn-default"> Reset </button>
-          <button class="btn btn-primary" type="submit" name="loginButton" id="loginButton" disabled="true"> Log in </button>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="">
-          <a href="#">Forget Password ?</a>
+
           <a href="#">Create Account</a>
         </div>
       </div>

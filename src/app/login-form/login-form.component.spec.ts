@@ -58,13 +58,23 @@ describe('LoginFormComponent', () => {
 
     // test cases - testing for failure
     var invalidEmails = [
-      'test@gnail.com',
+      'user@gnail.com',
       'test@ gmail.com',
       'ghgf@gmail.com.',
       'tes@t@gmail.com',
-      'testgmail.com'
+      'abcgmail.com'
     ];
+    // arrange
+    const fixture = TestBed.createComponent(LoginFormComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    //expect(component.email.legnth).toBeGreaterThan(0);
+    // act
+    de = fixture.debugElement.query(By.css('#loginButton'));
+    el = de.nativeElement;
 
+    // assume 
+    expect(el.disabled).toEqual(true);
   });
 
   /**
