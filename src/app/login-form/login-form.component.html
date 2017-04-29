@@ -7,7 +7,7 @@
       </div>
       <div class="form-group {{css_class}}">
         <input class="form-control" type="text" name="email" placeholder="example@gmail.com" [(ngModel)]="email" (ngModelChange)="checkEmailFormat($event)"
-          required>
+          required autofocus>
       </div>
       <div class="form-group" *ngIf="emailMessage.length>0">
         <label class="{{text_color}}">{{emailMessage}}</label>
@@ -23,7 +23,7 @@
       </div>
       <div class="form-group">
         <!--<button type="reset" class="btn btn-default"> Reset </button>-->
-        <button class="btn btn-primary" type="submit" name="loginButton" id="loginButton" [(disabled)]="!isValid"> Log in </button>
+        <button class="btn btn-success" type="submit" name="loginButton" id="loginButton" [(disabled)]="!isValid"> Log in </button>
 
       </div>
     </fieldset>

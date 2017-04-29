@@ -67,8 +67,8 @@ export class LoginFormComponent implements OnInit {
 
     // Check if email string is null or emapty
     if (this.email == null || this.email == "") {
-      this.emailMessage = 'you must enter valied email';
-      this.css_class = ' has-error';
+      this.emailMessage = 'you must enter valid email';
+      this.css_class = ' has-danger';
       return false;
     }
 
@@ -76,7 +76,8 @@ export class LoginFormComponent implements OnInit {
     let atSign = this.email.indexOf('@');
     if (atSign == -1) {
       this.emailMessage = '@ is missing from ' + this.email;
-      this.css_class = ' has-error';
+      this.css_class = ' has-warning';
+      this.text_color = ' text-warning';
       return false;
     }
     this.emailMessage = '';
@@ -102,8 +103,9 @@ export class LoginFormComponent implements OnInit {
     else if (returnValue == 2)
       return false;
     else {
-      this.emailMessage = "unacceprable domain name";
-      this.css_class = ' has-error';
+      this.emailMessage = "unacceptable domain name";
+      this.css_class = ' has-warning';
+      this.text_color = ' text-warning';
       return false;
     }
   }
@@ -114,7 +116,7 @@ export class LoginFormComponent implements OnInit {
       this.passwordMessage = "";
       return true;
     }
-      this.passwordMessage = "Short password";
+      this.passwordMessage = "Enter password";
     return false;
   }
 
