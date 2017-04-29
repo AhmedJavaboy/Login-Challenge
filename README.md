@@ -30,12 +30,12 @@ All tests are writen via [Jasmine](https://github.com/jasmine/jasmine).
 
 #### Test Cases
 
-*AppComponent
-  *should create the app
-*LoginFormComponent
-  *should create
-  *should not enable login button if we have no values
-  *have a working CheckEmail service
+* AppComponent
+  * should create the app
+* LoginFormComponent
+  * should create
+  * should not enable login button if we have no values
+  * have a working CheckEmail service
 
 ## Further help on Angular CLI
 
