@@ -1,12 +1,14 @@
 import { TestBed, async } from '@angular/core/testing';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
 
 import {ToastsManager , ToastOptions} from 'ng2-toastr';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports:[FormsModule],
       declarations: [
         AppComponent,LoginFormComponent
       ],

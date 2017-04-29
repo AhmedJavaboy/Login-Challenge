@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { LoginFormComponent } from './login-form.component';
+import { FormsModule } from '@angular/forms';
 
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager, ToastOptions } from 'ng2-toastr/ng2-toastr';
@@ -15,7 +16,7 @@ describe('LoginFormComponent', () => {
   let el: HTMLInputElement;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [],
+      imports: [FormsModule],
       providers: [ToastsManager, ToastOptions],
       declarations: [LoginFormComponent]
     })
