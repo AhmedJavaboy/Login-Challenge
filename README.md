@@ -2,12 +2,14 @@
 
 This project is built based on [Angular CLI] version 1.0.0. 
 
+## UX
+
 ## Setup
-### Prerequisites
+#### Prerequisites
 
 This project have dependencies that require Node 6.9.0 or higher, together with NPM 3 or higher.[Node Download](https://nodejs.org/en/download/)
 
-### Install
+#### Install
 
 After downloading this project you need to open terminal in this project and run `npm install` to install node modules.
   
@@ -19,11 +21,21 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-## Running unit tests
+## Testing
+
+#### Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 All tests are writen via [Jasmine](https://github.com/jasmine/jasmine).
 
+#### Test Cases
+
+AppComponent
+should create the app
+LoginFormComponent
+should create
+should not enable login button if we have no values
+have a working CheckEmail service
 
 ## Further help on Angular CLI
 
