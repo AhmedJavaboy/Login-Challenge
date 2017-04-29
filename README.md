@@ -9,7 +9,7 @@ This project have dependencies that require Node 6.9.0 or higher, together with 
 
 ### Install
 
-After downloading this project you need to open cmd in this project run `npm install` to install node modules.
+After downloading this project you need to open terminal in this project and run `npm install` to install node modules.
   
 ## Development server
 
@@ -25,6 +25,6 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 All tests are writen via [Jasmine](https://github.com/jasmine/jasmine).
 
 
-## Further help
+## Further help on Angular CLI
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
