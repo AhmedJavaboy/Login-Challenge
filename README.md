@@ -7,8 +7,9 @@ This project is built based on [Angular CLI] version 1.0.0.
 
 This project have dependencies that require Node 6.9.0 or higher, together with NPM 3 or higher.[Node Download](https://nodejs.org/en/download/)
 
-### 
+### Install
 
+After downloading this project you need to open cmd in this project run `npm install` to install node modules.
   
 ## Development server
 
