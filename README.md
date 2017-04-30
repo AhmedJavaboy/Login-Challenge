@@ -3,7 +3,9 @@
 ## Description
 #### UI
 This project uses bootstrap and toastr to enhance ui and it is responsive on web and mobile.
-![alt text](https://github.com/AhmedJavaboy/Login-Challenge/ "Logo Title Text 1")
+<img src="https://github.com/AhmedJavaboy/Login-Challenge/blob/master/template/image1.PNG" width="350" />
+<img src="https://github.com/AhmedJavaboy/Login-Challenge/blob/master/template/image2.PNG" width="350" />
+
 #### UX
 
 This project aims to improve user experince while user tries to login into system.
