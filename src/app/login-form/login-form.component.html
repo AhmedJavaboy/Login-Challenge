@@ -6,7 +6,7 @@
         <img src="src/img/nobody_m.original.jpg" width="200px" />
       </div>
       <div class="form-group {{css_class}}">
-        <input class="form-control" type="text" name="email" placeholder="example@gmail.com" [(ngModel)]="email" (ngModelChange)="checkEmailFormat($event)"
+        <input class="form-control" type="text" name="email" placeholder="example@gmail.com" [(ngModel)]="email" (ngModelChange)="CheckFieldEmail($event)"
           required autofocus>
       </div>
       <div class="form-group" *ngIf="emailMessage.length>0">

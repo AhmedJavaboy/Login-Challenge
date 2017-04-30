@@ -70,16 +70,16 @@ export class LoginFormComponent implements OnInit {
     let emailParts = email;
     this.validUrls.domains.forEach(element => {// loop each vaild domain
 
-      let toMatch = element.domain;
-      let stringStartAt = element.email.length - toMatch.length;
-      let emailParts = element.email.substring(stringStartAt);
-      if (emailParts == toMatch) {//if they match return 1; which mean perfect format
+      let toMatch = '@'+element.domain;
+      let stringStartAt = email.length - toMatch.length;
+      let emailPart = email.substring(stringStartAt);
+      if (emailPart == toMatch) {//if they match return 1; which mean perfect format
         this.emailMessage = "";
         this.css_class = ' has-success';
         returnValue = MatchStatus.exact;
         return MatchStatus.exact;
-      } else if (this.stringSimilar(emailParts, toMatch)) {  // 
-        this.emailMessage = "do you mean " + emailParts[0] + '@' + toMatch;
+      } else if (this.stringSimilar(emailPart, toMatch)) {  // 
+        this.emailMessage = "do you mean " + email.substring(0, stringStartAt - 1) + toMatch;
         this.css_class = ' has-success';
         this.text_color = ' text-default';
         returnValue = MatchStatus.alike;
@@ -127,9 +127,20 @@ export class LoginFormComponent implements OnInit {
     this.passwordMessage = "Enter password";
     return false;
   }
+  CheckFieldEmail($event) {
+    if (this.checkForSimilarEmail(this.email) == MatchStatus.alike ) {
+      this.isValid = true;
+    }
+    else if (this.checkEmailFormat(this.email) ) {
+      this.isValid = true;
+    }
+    else {
+      this.isValid = false;
+    }
+  }
 
   CheckFields($event) {
-    if (this.checkForSimilarEmail(this.email) ==MatchStatus.alike && this.haveValidPassword()) {
+    if (this.checkForSimilarEmail(this.email) == MatchStatus.alike && this.haveValidPassword()) {
       this.isValid = true;
     }
     else if (this.checkEmailFormat(this.email) && this.haveValidPassword()) {
