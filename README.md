@@ -22,7 +22,7 @@ I have 4 main cases when user tries to login.
 
 ##### About tests
 
-All tests are writen via [Jasmine](https://github.com/jasmine/jasmine). I focused on email validation methods more that testing ui because they were very critical to be able to match requirement.
+All tests are writen via [Jasmine](https://github.com/jasmine/jasmine). I focused on email validation methods more than testing ui because they were very critical to be able to match requirement.
 
 ##### To add to my test cases 
 1. open ~/src/app/data/ and you will find 4 .ts files with json
