@@ -40,7 +40,7 @@ After downloading this project you need to open terminal in this project and run
   
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files. Use the `-prod` flag for a production build. Like `ng serve -prod`.
 
 ## Build
 
