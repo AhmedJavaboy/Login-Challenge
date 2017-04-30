@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { MatchStatus } from './match-enum';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-login-form',
@@ -18,6 +19,7 @@ export class LoginFormComponent implements OnInit {
   css_class: string = '';
   text_color: string = 'text-danger';
   validUrls;
+  recomendedEmail: string = '';
 
   constructor(public toastr: ToastsManager, vcr: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vcr);
@@ -26,6 +28,11 @@ export class LoginFormComponent implements OnInit {
   ngOnInit() {
     this.validUrls = { domains: [{ domain: "gmail.com" }, { domain: "yahoo.com" }] }
 
+  }
+
+  changeEmailInto($event) {
+    this.email = this.recomendedEmail;
+    console.log('i am here');
   }
 
   matchUserInfo(): boolean {
@@ -65,21 +72,27 @@ export class LoginFormComponent implements OnInit {
   /// return 1 if complete match 
   /// return 2 if alike 
   /// return 0 if not match 
+  // i use enum instead to represent return value
   checkForSimilarEmail(email) {
     let returnValue = MatchStatus.notMatch;
     let emailParts = email;
     this.validUrls.domains.forEach(element => {// loop each vaild domain
 
-      let toMatch = '@'+element.domain;
+      let toMatch = '@' + element.domain;
       let stringStartAt = email.length - toMatch.length;
       let emailPart = email.substring(stringStartAt);
-      if (emailPart == toMatch) {//if they match return 1; which mean perfect format
+      if (emailPart == toMatch) {//if they match return MatchStatus.exact which mean perfect format
         this.emailMessage = "";
         this.css_class = ' has-success';
         returnValue = MatchStatus.exact;
         return MatchStatus.exact;
-      } else if (this.stringSimilar(emailPart, toMatch)) {  // 
-        this.emailMessage = "do you mean " + email.substring(0, stringStartAt - 1) + toMatch;
+      }
+      else if (this.stringSimilar(emailPart, toMatch)) {  // 
+        if (email[stringStartAt] == "@") {
+          this.recomendedEmail = email.substring(0, stringStartAt) + toMatch;
+        } else {
+          this.recomendedEmail = email.substring(0, stringStartAt + 1) + toMatch;
+        }
         this.css_class = ' has-success';
         this.text_color = ' text-default';
         returnValue = MatchStatus.alike;
@@ -89,7 +102,7 @@ export class LoginFormComponent implements OnInit {
     return returnValue;
   }
 
-
+  
   validateEmail(test) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(test);
@@ -120,7 +133,7 @@ export class LoginFormComponent implements OnInit {
 
 
   haveValidPassword() {
-    if (this.password.length > 0) {
+    if (this.password.length > -1) {
       this.passwordMessage = "";
       return true;
     }
@@ -128,10 +141,35 @@ export class LoginFormComponent implements OnInit {
     return false;
   }
   CheckFieldEmail($event) {
-    if (this.checkForSimilarEmail(this.email) == MatchStatus.alike ) {
-      this.isValid = true;
+    if (this.checkEmailFormat(this.email) && this.checkForSimilarEmail(this.email) == MatchStatus.alike) {
+      if (this.validateEmail(this.recomendedEmail)) {
+        this.emailMessage = "Valid email \u2713" +
+          " but do you mean " + this.recomendedEmail;
+        this.isValid = true;
+      }
+      else {
+        this.emailMessage = "Invalid email, You used an unallowed character";
+        this.isValid = false;
+        this.css_class = ' has-danger';
+        this.text_color = ' text-danger';
+      }
+
     }
-    else if (this.checkEmailFormat(this.email) ) {
+    else if (this.checkForSimilarEmail(this.email) == MatchStatus.alike) {
+      if (this.validateEmail(this.recomendedEmail)) {
+        this.emailMessage = "Invalid email," + " do you mean " + this.recomendedEmail;
+      }
+      else {
+        this.emailMessage = "Invalid email, You used an unallowed character";
+      }
+      this.css_class = ' has-danger';
+      this.text_color = ' text-danger';
+      this.isValid = false;
+    }
+    else if (this.checkEmailFormat(this.email)) {
+      this.emailMessage = "Valid email \u2713";
+      this.css_class = ' has-success';
+      this.text_color = ' text-success';
       this.isValid = true;
     }
     else {
@@ -140,10 +178,37 @@ export class LoginFormComponent implements OnInit {
   }
 
   CheckFields($event) {
-    if (this.checkForSimilarEmail(this.email) == MatchStatus.alike && this.haveValidPassword()) {
-      this.isValid = true;
+    if (this.checkEmailFormat(this.email) && this.checkForSimilarEmail(this.email) == MatchStatus.alike && this.haveValidPassword()) {
+
+      if (this.validateEmail(this.recomendedEmail)) {
+        this.emailMessage = "Valid email \u2713" +
+          " but do you mean " + this.recomendedEmail;
+        this.isValid = true;
+      } else {
+        this.emailMessage = "Invalid email, You used an unallowed character";
+        this.isValid = false;
+        this.css_class = ' has-danger';
+        this.text_color = ' text-danger';
+      }
+
+    }
+    else if (this.checkForSimilarEmail(this.email) == MatchStatus.alike && this.haveValidPassword()) {
+
+      if (this.validateEmail(this.recomendedEmail)) {
+        this.emailMessage = "Invalid email," + " do you mean " + this.recomendedEmail;
+      }
+      else {
+        this.emailMessage = "Invalid email, You used an unallowed character";
+      }
+      this.css_class = ' has-danger';
+      this.text_color = ' text-danger';
+      this.isValid = false;
+
     }
     else if (this.checkEmailFormat(this.email) && this.haveValidPassword()) {
+      this.emailMessage = "Valid email \u2713";
+      this.css_class = ' has-success';
+      this.text_color = ' text-success';
       this.isValid = true;
     }
     else {
