@@ -4,9 +4,9 @@
 
 #### UX/UI
 
-This project aims to improve user experince while user is trying to login into system.
+This project aims to improve user experince while user tries to login into system.
 It provide user with good colors which represent if email is invalid(red) or valid(green).
-I have 4 main cases when user trys to login.
+I have 4 main cases when user tries to login.
 1. user enter valid format similar to gmail.com or yahoo.com (you can add to array for more options).
   * Allow login and offer another format.
   * Display error message with description if user enter invalid characters.
