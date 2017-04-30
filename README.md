@@ -38,6 +38,11 @@ All tests are writen via [Jasmine](https://github.com/jasmine/jasmine).
   * should be created
   * should not enable login button by default
   * have a working CheckEmailFormat Method
+  * Methods
+    * have a working validateEmail Method
+    * have a working checkEmailFormat Method
+    * have a working stringSimilar(s1, s2) Method
+    * have a working checkForSimilarEmail Method
 
 ## Further help on Angular CLI
 
