@@ -1,10 +1,33 @@
 # Natural Cycles Challange 
 
-This project is built based on [Angular CLI] version 1.0.0. 
-
 ## Description
 
-#### UX
+#### UX/UI
+
+This project aims to improve user experince while user is trying to login into system.
+It provide user with good colors which represent if email is invalid(red) or valid(green).
+I have 4 main cases when user trys to login.
+1. user enter valid format similar to gmail.com or yahoo.com (you can add to array for more options).
+  * Allow login and offer another format.
+  * Display error message with description if user enter invalid characters.
+2. user enter invalid format but similar to gmail.com or yahoo.com
+  * Login is diabled and offer anoher correct format.
+  * Display error message with description if user enter invalid characters.
+3. user enter correct format but not similar to gmail.com or yahoo.com
+  * Allow login and valid email message.
+4. user enter wrong formatand and neither similar to gmail.com nor yahoo.com
+  * Disallow login and invalid email message. 
+
+#### TDD
+
+##### About tests
+
+All tests are writen via [Jasmine](https://github.com/jasmine/jasmine). I focused on email validation methods more that testing ui because they were very critical to be able to match requirement.
+
+##### To add to my test cases 
+1. open ~/src/app/data/ and you will find 4 .ts files with json
+2. add to them your test cases
+3. run tests using `ng test`
 
 ## Setup
 #### Prerequisites
