@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { MatchStatus } from './match-enum';
 
 @Component({
   selector: 'app-login-form',
@@ -15,7 +16,7 @@ export class LoginFormComponent implements OnInit {
   loginButton;
   isValid: boolean = false;
   css_class: string = '';
-  text_color:string = 'text-danger';
+  text_color: string = 'text-danger';
   validUrls;
 
   constructor(public toastr: ToastsManager, vcr: ViewContainerRef) {
@@ -61,52 +62,59 @@ export class LoginFormComponent implements OnInit {
     }
   }
 
-  /// check if email correct =1 ,wrong formated =0 ,or similar to = 2
-  checkEmailFormat() {
-    let emailParts;
-
-    // Check if email string is null or emapty
-    if (this.email == null || this.email == "") {
-      this.emailMessage = 'you must enter valid email';
-      this.css_class = ' has-danger';
-      return false;
-    }
-
-    // Check if email have @ sign
-    let atSign = this.email.indexOf('@');
-    if (atSign == -1) {
-      this.emailMessage = '@ is missing from ' + this.email;
-      this.css_class = ' has-warning';
-      this.text_color = ' text-warning';
-      return false;
-    }
-    this.emailMessage = '';
-    emailParts = this.email.split('@');
-    let returnValue;
+  /// return 1 if complete match 
+  /// return 2 if alike 
+  /// return 0 if not match 
+  checkForSimilarEmail(email) {
+    let returnValue = MatchStatus.notMatch;
+    let emailParts = email;
     this.validUrls.domains.forEach(element => {// loop each vaild domain
-      let s1 = emailParts[1];
-      let s2 = element.domain;
-      if (s2==s1) {//if they match return 1; which mean perfect format
+
+      let toMatch = element.domain;
+      let stringStartAt = element.email.length - toMatch.length;
+      let emailParts = element.email.substring(stringStartAt);
+      if (emailParts == toMatch) {//if they match return 1; which mean perfect format
         this.emailMessage = "";
         this.css_class = ' has-success';
-        returnValue = 1;
-        return true;
-      } else if (this.stringSimilar(s1, s2)) {  // 
-        this.emailMessage = "do you mean "+emailParts[0]+'@'+s2;
-        this.css_class = ' has-warning';
-        returnValue = 2;
-        return false;
+        returnValue = MatchStatus.exact;
+        return MatchStatus.exact;
+      } else if (this.stringSimilar(emailParts, toMatch)) {  // 
+        this.emailMessage = "do you mean " + emailParts[0] + '@' + toMatch;
+        this.css_class = ' has-success';
+        this.text_color = ' text-default';
+        returnValue = MatchStatus.alike;
+        return MatchStatus.alike;
       }
     });
-    if (returnValue == 1)
-      return true;
-    else if (returnValue == 2)
+    return returnValue;
+  }
+
+
+  validateEmail(test) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(test);
+  }
+  /// check if email correct =1 ,empty =0 ,or wrong formated = 2
+  checkEmailFormat(email) {
+    let emailParts;
+    // Check if email string is null or emapty
+    if (email == null || email == "") {
+      this.emailMessage = 'you must enter your email';
+      this.css_class = ' has-danger';
       return false;
-    else {
-      this.emailMessage = "unacceptable domain name";
-      this.css_class = ' has-warning';
-      this.text_color = ' text-warning';
-      return false;
+    } else {
+      if (this.validateEmail(email)) {
+        this.emailMessage = "Valid email \u2713";
+        this.css_class = ' has-success';
+        this.text_color = ' text-success';
+        return true;
+      }
+      else {
+        this.emailMessage = "Invalid email";
+        this.css_class = ' has-danger';
+        this.text_color = ' text-danger';
+        return false;
+      }
     }
   }
 
@@ -116,16 +124,20 @@ export class LoginFormComponent implements OnInit {
       this.passwordMessage = "";
       return true;
     }
-      this.passwordMessage = "Enter password";
+    this.passwordMessage = "Enter password";
     return false;
   }
 
   CheckFields($event) {
-    if (this.checkEmailFormat() && this.haveValidPassword()) {
+    if (this.checkForSimilarEmail(this.email) ==MatchStatus.alike && this.haveValidPassword()) {
+      this.isValid = true;
+    }
+    else if (this.checkEmailFormat(this.email) && this.haveValidPassword()) {
       this.isValid = true;
     }
     else {
       this.isValid = false;
     }
+
   }
 }

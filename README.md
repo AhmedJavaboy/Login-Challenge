@@ -2,7 +2,9 @@
 
 This project is built based on [Angular CLI] version 1.0.0. 
 
-## UX
+## Description
+
+#### UX
 
 ## Setup
 #### Prerequisites
@@ -33,9 +35,9 @@ All tests are writen via [Jasmine](https://github.com/jasmine/jasmine).
 * AppComponent
   * should create the app
 * LoginFormComponent
-  * should create
-  * should not enable login button if we have no values
-  * have a working CheckEmail service
+  * should be created
+  * should not enable login button by default
+  * have a working CheckEmailFormat Method
 
 ## Further help on Angular CLI
 
