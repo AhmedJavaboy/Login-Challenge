@@ -1,8 +1,9 @@
 # Natural Cycles Challange 
 
 ## Description
-
-#### UX/UI
+#### UI
+This project uses bootstrap and toastr to enhance ui and it is responsive on web and mobile.
+#### UX
 
 This project aims to improve user experince while user tries to login into system.
 It provide user with good colors which represent if email is invalid(red) or valid(green).
