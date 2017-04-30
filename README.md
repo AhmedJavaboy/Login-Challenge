@@ -1,8 +1,9 @@
 # Natural Cycles Challange 
 
 ## Description
-
-#### UX/UI
+#### UI
+This project uses bootstrap and toastr to enhance ui and it is responsive on web and mobile.
+#### UX
 
 This project aims to improve user experince while user tries to login into system.
 It provide user with good colors which represent if email is invalid(red) or valid(green).
@@ -14,9 +15,9 @@ I have 4 main cases when user tries to login.
   * Login is diabled and offer anoher correct format.
   * Display error message with description if user enter invalid characters.
 3. user enter correct format but not similar to gmail.com or yahoo.com
-  * Allow login and valid email message.
+  * Allow login and display valid email message.
 4. user enter wrong formatand and neither similar to gmail.com nor yahoo.com
-  * Disallow login and invalid email message. 
+  * Disallow login and display invalid email message. 
 
 #### TDD
 
