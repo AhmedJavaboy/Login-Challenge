@@ -40,7 +40,17 @@ This project have dependencies that require Node 6.9.0 or higher, together with 
 
 #### Install
 
+##### Node Modules
+
 After downloading this project you need to open terminal in this project and run `npm install` to install node modules.
+
+##### Angular Cli
+
+you need to open terminal, navigate to this project and run `npm install -g @angular/cli` to install Angular Cli.
+
+##### Start in dev mode
+
+Run `ng serve` for a dev server.
   
 ## Development server
 
